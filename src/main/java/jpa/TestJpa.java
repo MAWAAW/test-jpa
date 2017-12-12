@@ -39,15 +39,40 @@ public class TestJpa {
     	EntityManager em = emf.createEntityManager();
     	
     	
-    	TypedQuery<BonCommande> query = em.createQuery("select b from BonCommande b where b.numero=2 ",BonCommande.class);
+    	/*TypedQuery<BonCommande> query = em.createQuery("select b from BonCommande b where b.numero=2 ",BonCommande.class);
     	BonCommande bon = query.getResultList().get(0);
     	List<Article> articles = bon.getListeArticle();
-    	articles.stream().filter(a -> a.getPrix()>100).forEach(f -> LOGGER.info(f.toString()));
+    	articles.stream().filter(a -> a.getPrix()<100).forEach(f -> LOGGER.info(f.toString()));*/
     	
-    	/* Extraction de tous les fournisseurs et affichage  */
-    	/*TypedQuery<Fournisseur> query3 = em.createQuery("select f from Fournisseur f",Fournisseur.class);
-    	List<Fournisseur> fournisseurs = query3.getResultList();
-    	fournisseurs.stream().forEach(f -> LOGGER.info(f.toString()));*/
+    	/* Création d'un fournisseur et ajout en base  */
+    	/*Fournisseur fournisseur = new Fournisseur();
+    	fournisseur.setId(7);
+    	fournisseur.setNom("FOU_7");
+    	
+    	em.getTransaction().begin();
+    	em.persist(fournisseur);
+    	em.getTransaction().commit();
+    	*/
+    	
+    	/*Article article = new Article();
+    	article.setId(1000001);
+    	article.setReference("ref4445");
+    	article.setDesignation("ibm tools");
+    	article.setPrix(321.);
+    	article.setIdFournisseur(fournisseur);
+    	
+    	BonCommande bon = new BonCommande();
+    	bon.setId(7);
+    	bon.setFournisseur(fournisseur);
+    	
+    	em.getTransaction().begin();
+    	em.persist(article);
+    	em.getTransaction().commit();*/
+    	
+    	/*TypedQuery<Article> query = em.createQuery("select b from Article b where b.reference like 'ref4445' ",Article.class);
+    	List<Article> art = query.getResultList();
+    	art.stream().forEach(f -> LOGGER.info(f.toString()));
+    	*/
     	
     	/* Fermeture de la connexion vers la base de donnée */
     	em.close();
@@ -55,5 +80,4 @@ public class TestJpa {
     	
     	
     }
-	
 }

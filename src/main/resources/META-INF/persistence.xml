@@ -4,13 +4,21 @@
              version="2.0">
 	<persistence-unit name="test-jpa" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>entity.Article</class>
-		<class>entity.Article</class>
+		<class>bankEntity.Banque</class>
+		<class>bankEntity.Client</class>
+		<class>bankEntity.Compte</class>
+		<class>bankEntity.LivretA</class>
+		<class>bankEntity.AssuranceVie</class>
+		<class>bankEntity.Operation</class>
+		<class>bankEntity.Virement</class>
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/bricolage"/>
+			<property name="hibernate.archive.autodetection" value=""/> <!-- Desactiver l'autodetection des classes @Entity -->
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/banque"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
 			<property name="javax.persistence.jdbc.password" value=""/>
 			<property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
+			<property name="hibernate.hbm2ddl.auto" value="update"/> <!-- Genere les tables des classes @Entity s'ils sont déclaré -->
 		</properties>
 	</persistence-unit>
 </persistence>
